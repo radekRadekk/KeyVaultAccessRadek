@@ -35,7 +35,6 @@ public static class KeyVaultAccessRadek
 
     public static async Task<string> GetSecret(string name)
     {
-        const string secretName = "SecretNumber";
         const string keyVaultName = "KeyVaultRadek";
         const string kvUri = $"https://{keyVaultName}.vault.azure.net";
 
@@ -43,7 +42,7 @@ public static class KeyVaultAccessRadek
         {
             var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
-            var secret = await client.GetSecretAsync(secretName);
+            var secret = await client.GetSecretAsync(name);
             return secret.Value.Value;
         }
         catch (Exception)
